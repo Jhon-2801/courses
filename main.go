@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net/http"
-	"time"
 	"v/internal/course"
 	"v/internal/enrollment"
 	"v/internal/user"
@@ -43,14 +42,7 @@ func main() {
 
 	router.HandleFunc("/enrollments", enrollEnd.Create).Methods("POST")
 
-	srv := &http.Server{
-		Handler:      router,
-		Addr:         "127.0.0.1:8000",
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 5 * time.Second,
-	}
-
-	err = srv.ListenAndServe()
+	err = http.ListenAndServe(":8081", router)
 	if err != nil {
 		log.Fatal(err)
 	}

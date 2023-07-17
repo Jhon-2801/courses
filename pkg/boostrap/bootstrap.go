@@ -18,7 +18,7 @@ func DBConnection() (*gorm.DB, error) {
 	port := os.Getenv("DATABASE_PORT")
 	name := os.Getenv("DATABASE_NAME")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
+	dsn := fmt.Sprintf("%s:%s@(%s:%s)/%s?charset=utf8&parseTime=True",
 		user,
 		password,
 		host,
